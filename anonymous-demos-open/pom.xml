@@ -6,11 +6,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.demo.anonymous</groupId>
 	<artifactId>anonymous-demos-open</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>12.0.0-SNAPSHOT</version>
 	<packaging>iar</packaging>
 	<properties>
+		<project.build.plugin.version>12.0.0</project.build.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype</id>
+			<url>https://central.sonatype.com/repository/maven-snapshots</url>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>com.axonivy.demo.anonymous</groupId>
@@ -24,7 +34,7 @@
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>12.0.8</version>
+				<version>${project.build.plugin.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>
