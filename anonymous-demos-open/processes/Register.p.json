@@ -1,0 +1,463 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19C23640F9AD30D8",
+  "config" : {
+    "data" : "com.axonivy.demo.anonymous.open.RegisterData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "register",
+      "config" : {
+        "signature" : "register",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/register\")%>",
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Register",
+      "config" : {
+        "dialog" : "com.axonivy.demo.anonymous.open.ui.Register:start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.person" : "result.person",
+            "out.result" : "result.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 160 },
+        "description" : "Submit personal data by external user"
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : "To start process use /<APPLICATION>/pro/anonymous-demos-open/19C23640F9AD30D8/register.ivp",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 56 },
+        "size" : { "width" : 254, "height" : 86 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "externalRegister",
+      "config" : {
+        "signature" : "externalRegister",
+        "input" : {
+          "params" : [
+            { "name" : "fullName", "type" : "String", "desc" : "" },
+            { "name" : "email", "type" : "String", "desc" : "" },
+            { "name" : "ssn", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.person.email" : "param.email",
+            "out.person.fullName" : "param.fullName",
+            "out.person.ssn" : "param.ssn"
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "",
+            "out.result = \"create\";",
+            "if(StringUtils.isAnyBlank(param.email, param.fullName)) {",
+            "  out.result = \"cancel\";",
+            "}"
+          ]
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 304 },
+        "labelOffset" : { "x" : 49, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 456, "y" : 304 } ] }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "RequestStart",
+      "name" : "emailVerification",
+      "config" : {
+        "signature" : "emailVerification",
+        "input" : {
+          "params" : [
+            { "name" : "token", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Token;",
+            "out.token = ivy.repo.search(Token.class).textField(\"token\").isEqualToIgnoringCase(param.token).execute().getFirst() as Token;"
+          ]
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/verifyEmail.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 160 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "Alternative",
+      "name" : "Data ok?",
+      "config" : {
+        "conditions" : {
+          "f14" : "in.result.equals(\"create\")"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 160 },
+        "labelOffset" : { "x" : -24, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f15", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : -23, "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f19", "to" : "f12", "via" : [ { "x" : 456, "y" : 64 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.41,
+            "offset" : { "x" : -204, "y" : 30 }
+          } }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Generate token and email verification link",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Service;",
+            "import java.util.UUID;",
+            "import com.axonivy.demo.anonymous.core.Token;",
+            "",
+            "String id = ivy.repo.save(in.person).getId();",
+            "",
+            "in.token.personId = id;",
+            "in.token.token = UUID.randomUUID().toString();",
+            "in.token.type = \"verifyEmail\";",
+            "in.token.valid = true;",
+            "",
+            "ivy.repo.save(in.token);",
+            "",
+            "in.emailVerificationLink = Service.get().appRelativeLink(\"anonymous-demos-open/19C23640F9AD30D8/emailVerification.ivp?token=%s\".formatted(in.token.token));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 161 },
+        "size" : { "width" : 136, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f20", "color" : "default" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "EMail",
+      "name" : "Send verification email",
+      "config" : {
+        "headers" : {
+          "subject" : "<%=ivy.cms.co(\"/Emails/emailVerificationSubject\")%>",
+          "to" : "<%=in.person.email%>"
+        },
+        "message" : {
+          "body" : "<%=ivy.cms.co(\"/Emails/emailVerificationContent\", [in.emailVerificationLink])%>",
+          "contentType" : "text/html"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 808, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f11", "color" : "default" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "Alternative",
+      "name" : "Token valid?",
+      "config" : {
+        "conditions" : {
+          "f23" : "in.token.valid"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 448 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f26", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : -23, "y" : 14 }
+          }, "color" : "default" },
+        { "id" : "f28", "to" : "f29", "via" : [ { "x" : 456, "y" : 544 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.41,
+            "offset" : { "x" : -176, "y" : -58 }
+          } }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "Script",
+      "name" : "Send signal: person approval.",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Token;",
+            "ivy.wf.signals().create().data(in.token.personId).send(\"personApproval\");",
+            "",
+            "in.token.valid = false;",
+            "",
+            "ivy.repo.save(in.token);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 448 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/invalidToken.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 544 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/registrationAborted.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/verifyEmailSuccess.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 448 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "RequestStart",
+      "name" : "submitMissingData",
+      "config" : {
+        "signature" : "submitMissingData",
+        "input" : {
+          "params" : [
+            { "name" : "token", "type" : "String", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Person;",
+            "import com.axonivy.demo.anonymous.core.Token;",
+            "out.token = ivy.repo.search(Token.class).textField(\"token\").isEqualToIgnoringCase(param.token).execute().getFirst() as Token;",
+            "out.person = ivy.repo.find(out.token.personId, Person.class) as Person;"
+          ]
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 112, "y" : 720 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/submissionSuccessful.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 720 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f27",
+      "type" : "DialogCall",
+      "name" : "Submit missing data.",
+      "config" : {
+        "dialog" : "com.axonivy.demo.anonymous.open.ui.Register:submitMissingData(com.axonivy.demo.anonymous.core.Person)",
+        "call" : {
+          "map" : {
+            "param.person" : "in.person"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.person" : "result.person",
+            "out.result" : "result.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 344, "y" : 720 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f33", "color" : "default" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Save person data & set validity token to false.",
+      "config" : {
+        "output" : {
+          "code" : [
+            "in.personId = ivy.repo.save(in.person).getId();",
+            "",
+            "in.token.valid = false;",
+            "ivy.repo.save(in.token);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 720 },
+        "size" : { "width" : 136 }
+      },
+      "connect" : [
+        { "id" : "f32", "to" : "f41", "color" : "default" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "Alternative",
+      "name" : "Proceed?",
+      "config" : {
+        "conditions" : {
+          "f36" : "in.result.equals(\"cancel\")",
+          "f34" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 720 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f31", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : -5, "y" : 14 }
+          }, "color" : "default" },
+        { "id" : "f36", "to" : "f35", "via" : [ { "x" : 480, "y" : 800 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.4,
+            "offset" : { "x" : -152, "y" : -26 }
+          } }
+      ]
+    }, {
+      "id" : "f35",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/cancelled.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 800 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f37",
+      "type" : "Alternative",
+      "name" : "Token valid?",
+      "config" : {
+        "conditions" : {
+          "f38" : "in.token.valid"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 720 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f27", "label" : {
+            "name" : "yes",
+            "offset" : { "x" : -3, "y" : 14 }
+          }, "color" : "default" },
+        { "id" : "f40", "to" : "f39", "via" : [ { "x" : 216, "y" : 880 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.35,
+            "offset" : { "x" : -221, "y" : -106 }
+          } }
+      ]
+    }, {
+      "id" : "f39",
+      "type" : "TaskEndPage",
+      "config" : {
+        "page" : "view/invalidToken.xhtml"
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 880 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : "Signal to continue internal process.",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.process.model.value.SignalCode;",
+            "ivy.wf.signals().create().data(in.personId).send(new SignalCode(\"continueAfterFillingData:\"+in.personId));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 808, "y" : 721 },
+        "size" : { "width" : 128, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f42", "to" : "f18", "color" : "default" }
+      ]
+    }, {
+      "id" : "f43",
+      "type" : "ProcessAnnotation",
+      "name" : "To start process use /<APPLICATION>/pro/anonymous-demos-open/19C23640F9AD30D8/externalRegister.ivp",
+      "visual" : {
+        "at" : { "x" : 208, "y" : 240 }
+      },
+      "connect" : [
+        { "id" : "f44", "to" : "f7" }
+      ]
+    } ]
+}

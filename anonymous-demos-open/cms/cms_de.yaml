@@ -1,0 +1,46 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        anonymous:
+          open:
+            ui:
+              Register:
+                email: E-Mail
+                fullName: Voller Name
+                info: "<p>\n\tBitte registrieren Sie sich mit Name und E-Mail Adresse!\n</p>\n<p>\n\tUm die Interaktion eines anonymen Users in einem offenen Bereich zu demonstrieren, werden Sie eine E-Mail erhalten um Ihre E-Mail Adresse als Identifikation zu bestätigen.\n\tUm die Interaktion mit einem\
+                  \ anonymen User innerhalb eines internen Prozesses zu demonstrieren ,werden Sie später von einem Genehmigungsmitarbeiter (Approver) per Mail\n\taufgefordert werden, Ihre Social Security Number zu übermitteln um den internen Prozess fortzuführen. (Die <b>Nummer</b> dient nur als Beispiel\
+                  \ und wird nicht weiter geprüft.)\n</p>"
+                infoMissing: "<p>\n\tBitte übermitteln Sie weitere Informationen!\n</p>"
+                noteAddData: |-
+                  Der interne Prozess wartet derzeit auf zusätzliche Daten des externen Users. Durch das Token in der E-Mail wird für den Dialog der korrekte externe Benutzer identifiziert.
+                  <hr/>
+                  Das Beispiel zeigt, wie interne Prozesse auf Aktionen eines externen Benutzers reagieren können.
+                noteRegister: |-
+                  Diese Seite zeigt, wie ein AxonIvy-Prozess als anonymer Benutzer gestartet werden kann. Die Seite fragt nach einer E-Mail Adresse, die im Anschluss verifiziert werden muss. Die Verifizierung wird über eine E-Mail mit einem speziellen Token Link realisiert. Durch das zufällig gewählte Token wird sichergestellt, dass der Prozess mit dem Eigentümer der E-Mail Adresse kommuniziert.
+
+                  <hr/>
+                  <strong>Hinweis:</strong> Der Benutzer wird nur anhand seiner E-Mail Adresse identifiziert. Es wird kein AxonIvy-Benutzer erstellt.
+                register: Registrieren
+                ssn: Social Security Number
+                submit: Abschicken
+                title: Persönliche Daten angeben
+Emails:
+  emailVerificationContent: Bitte folgen Sie diesem <a href="{0}">Link</a> um Ihre E-Mail zu bestätigen.
+  emailVerificationSubject: Bitte bestätigen Sie Ihre Email
+Processes:
+  register: Registrieren
+Static:
+  cancelled: Die Operation wurde abgebrochen.
+  invalidToken: Das Token ist abgelaufen oder ungültig.
+  processFinished: Der Prozess wurde beendet.
+  registrationAborted: Die Registrierung wurde abgebrochen.
+  registrationAbortedReason: Die Registration wird meist wegen fehlender Daten abgebrochen.
+  registrationContinues: Ihre Registrierung wird genehmigt und weitere Daten werden von Ihnen angefragt werden.
+  registrationPending: Die Registrierung ist im Gange.
+  submissionSuccessful: Daten wurden gesendet
+  submissionSuccessfulNote: Die Daten wurden erfolgreich versendet und der interne Prozess wurde fortgesetzt. Im Anschluss erhält der externe Benutzer eine Bestätigungsmail. Der interne Benutzer erhält vor Abschluss der Demo eine Aufgabe, die nun die vollständigen Daten des externen Benutzers anzeigt.
+  verifyEmail: Bitte prüfen Sie Ihre E-Mail und folgen Sie dem Link um Ihre E-Mail Adresse zu bestätigen.
+  verifyEmailSuccessful: Ihre E-Mail Adresse wurde erfolgreich verifiziert.
+  verifyEmailSuccessfulNote: Der vom externen User gestartete Prozess wird nun intern weitergeführt. Ein Genehmiger wird feststellen, dass weitere Daten (Social Security Number) benötigt werden und der Prozess wird eine Mail mit Token an den externen User senden mit der Aufforderung, diese Daten zur Verfügung
+    zu stellen.

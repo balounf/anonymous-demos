@@ -1,0 +1,23 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Token",
+  "namespace" : "com.axonivy.demo.anonymous.core",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "token",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "personId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "type",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "valid",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

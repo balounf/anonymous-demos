@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/ivy/12.0.12/ivy.json
+#
+# -------------------------------------------
+# Axon Ivy Engine Configuration
+# -------------------------------------------
+#
+# This file customizes the configuration of the Axon Ivy Engine and its external systems.
+# Defaults are documented in configuration/reference/ivy.yaml
+# https://developer.axonivy.com/doc/12.0/engine-guide/configuration/files/ivy-yaml.html
+#
+Administrators:
+  admin:
+    Password: $2a$10$sQengLU7VaNP5T4TwiMvjuco1Gs1qllna4acyZcmMCgJT2yNEIVKm
+    Email: admin@localhost
+    FullName: Administrator
+EMail:
+  Server:
+    Host: mail

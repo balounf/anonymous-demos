@@ -1,0 +1,132 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19C2359012AEA0A6",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.demo.anonymous.open.ui.Register.RegisterData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "map" : {
+            "out.addMissingData" : "false",
+            "out.person" : "new com.axonivy.demo.anonymous.core.Person()"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "person", "type" : "com.axonivy.demo.anonymous.core.Person", "desc" : "" },
+            { "name" : "result", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.person" : "in.person",
+            "result.result" : "in.result"
+          }
+        },
+        "guid" : "19C2359012B7B0AA"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 224 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "register",
+      "config" : {
+        "guid" : "19C27CAF317C7F4D",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.result" : "\"create\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 },
+        "labelOffset" : { "x" : 11, "y" : 35 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "19C28ED60374BE5F",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.result" : "\"cancel\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 312 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogStart",
+      "name" : "submitMissingData(Person)",
+      "config" : {
+        "signature" : "submitMissingData",
+        "input" : {
+          "params" : [
+            { "name" : "person", "type" : "com.axonivy.demo.anonymous.core.Person", "desc" : "" }
+          ],
+          "map" : {
+            "out.addMissingData" : "true",
+            "out.person" : "param.person"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "person", "type" : "com.axonivy.demo.anonymous.core.Person", "desc" : "" },
+            { "name" : "result", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.person" : "in.person",
+            "result.result" : "in.result"
+          }
+        },
+        "guid" : "19C2D10E1C34D83A"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 136 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f1", "via" : [ { "x" : 352, "y" : 136 } ] }
+      ]
+    } ]
+}

@@ -1,0 +1,43 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        anonymous:
+          open:
+            ui:
+              Register:
+                email: E-Mail
+                fullName: Full name
+                info: "<p>\n\tPlease register with your name and e-mail address!\n</p>\n<p>\n\tTo demo interaction with an anonymous user in an open space, you will receive an e-mail containing a link to confirm your e-mail address ad identification.\n\tTo demo interaction with an anonymous user started\
+                  \ by an internal process, an \"approver\" will later ask you vie e-mail to supply your social security number\n\tto continue the internal process. (The number is just an example and will not be validated.)\n</p>"
+                infoMissing: "<p>\n\tPlease provide additional information below!\n</p>"
+                noteAddData: |-
+                  The internal process is currently waiting for additional data from the external user. The token in the email identifies the correct external user for the dialog.
+                  <hr/>
+                  This example demonstrates how internal processes can respond to actions from an external user.
+                noteRegister: |-
+                  This page shows how to start an AxonIvy process as an anonymous user. The page requests an email address, which must then be verified. Verification is done via an email containing a special token link. The randomly generated token ensures that the process communicates with the owner of the email address.
+                  <hr/>
+                  <strong>Note:</strong> The user is only identified by e-mail address. No AxonIvy user will be created.
+                register: Register
+                ssn: Social security number
+                submit: Submit
+                title: Submitting personal data
+Emails:
+  emailVerificationContent: Please follow this <a href="{0}">link</a> to confirm your E-Mail address.
+  emailVerificationSubject: Please verify your email
+Processes:
+  register: Register
+Static:
+  cancelled: Operation was cancelled.
+  invalidToken: Supplied token is invalid or expired.
+  processFinished: Process finished.
+  registrationAborted: Registration was aborted.
+  registrationAbortedReason: The reason for abortion of your registration ist most likely incomplete data.
+  registrationContinues: Your registration will be approved and additional data will be requested from you.
+  registrationPending: Registration pending
+  submissionSuccessful: Submission successful
+  submissionSuccessfulNote: The data was successfully sent and the internal process continued. The external user will then receive a confirmation email. Before the demo concludes, the internal user will receive a task that displays the external user's complete data.
+  verifyEmail: Please check your e-mail and follow the link to verify your e-mail address.
+  verifyEmailSuccessful: Your e-mail address was successfully verified.
+  verifyEmailSuccessfulNote: The process initiated by the external user will now continue internally. An approver will determine that further data (Social Security Number) is required, and the process will send an email with a token to the external user requesting this data.

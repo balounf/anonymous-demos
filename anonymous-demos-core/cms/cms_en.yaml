@@ -1,0 +1,48 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        anonymous:
+          core:
+            ui:
+              Person:
+                email: E-Mail
+                fullName: First name
+                info: |-
+                  <p>
+                  A new user registered.
+                  </p>
+                note: |-
+                  <p>To demonstrate the interaction with an external user from within an internal AxonIvy process, the user is now asked for their Social Security Number. Upon request, the user receives another email containing a token, which directs them to a page where they can provide the missing information.</p>
+                  <p>The internal process waits with an admin task for confirmation that the user has provided the information. The administrator can take over this task at any time and continue it manually. This is useful, for example, if the information was entered into the system via a different method.</p>
+                noteFinal: The data was provided by the external user and is displayed here again. After this dialog, the process and thus the demonstration ends.
+                requestSSN: Request Social Security Number
+                ssn: Social Security Number
+                title: Approval of a user
+              admin:
+                AdminTask:
+                  adminTask: Admin task
+                  adminTaskInfo: |-
+                    Waiting for submission of social security number by new user.
+                    This wait step can be skipped with Proceed, if data was entered by other means.
+Emails:
+  notifyExternalPersonContent: Hello {0}, your social security number was accepted. Registration process finished.
+  notifyExternalPersonSubject: Your registration finished.
+  requestDataContent: Please follow this <a href="{0}">link</a> to submit missing data.
+  requestDataSubject: Please submit missing data
+Labels:
+  keepWaiting: Keep waiting
+  proceed: Proceed
+  skip: Skip
+Processes:
+  Names:
+    externalUserInvitation: Invitation for a new user
+Tasks:
+  AdminTask:
+    name: 'Admin Task: wait for additional data of user: {0}'
+  ApproveRegistration:
+    name: 'Approve Registration of user: {0}'
+  FinalInformation:
+    name: 'Registration completed for user: {0}'
+Validation:
+  valueIsRequired: ': value is required.'

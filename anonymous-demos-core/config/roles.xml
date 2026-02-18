@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<role>
+    <identifier>Everybody</identifier>
+    <role>
+        <identifier>AnonymousUserApprover</identifier>
+        <displayName>Approver for anonymous users</displayName>
+    </role>
+    <role>
+        <identifier>AnonymousUserAdmin</identifier>
+        <displayName>Admin for anonymous users</displayName>
+    </role>
+</role>

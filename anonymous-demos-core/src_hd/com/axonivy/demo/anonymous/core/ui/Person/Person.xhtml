@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/title')}</ui:define>
+    <ui:define name="content">
+      <h:form id="form">
+      	<div class="ui-fluid">
+			<div class="grid">
+				<div class="col-12 md:col-12 lg:col-12">
+					<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/info')}" escape="false"/>
+				</div>
+			</div>
+			<p:spacer/>
+      		<div class="grid">
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/fullName')}"/>
+      			</div>
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<p:inputMask id="fullName" value="#{data.person.fullName}" disabled="true"/>
+      			</div>
+      		</div>
+      		<div class="grid">
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/email')}"/>
+      			</div>
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<p:inputMask id="email" value="#{data.person.email}" disabled="true"/>
+      			</div>
+      		</div>
+      		<div class="grid">
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/ssn')}"/>
+      			</div>
+      			<div class="col-12 md:col-6 lg:col-3">
+      				<p:inputMask id="ssn" value="#{data.person.ssn}" readonly="true" styleClass="#{data.missingSsn ? 'ui-state-error' : ''}"/>
+      			</div>
+      		</div>
+      		<div class="mb-4"/>
+      		<h:panelGroup>
+      			<div align="right">
+					<div class="note">
+						<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/note')}" escape="false" rendered="#{data.missingSsn}"/>
+						<h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/noteFinal')}" escape="false" rendered="#{!data.missingSsn}"/>
+					</div>
+				</div>
+      		</h:panelGroup>
+			<div class="mb-4"/>
+      		<div class="grid justify-content-end">
+      			<div class="col-12 md:col-4 lg:col-3">
+      				<p:commandButton id="requestSsn" icon="fa fa-chevron-right" value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/Person/requestSSN')}" rendered="#{data.missingSsn}" actionListener="#{logic.requestSsn}"/>
+      				<p:commandButton id="proceedApproval" icon="fa fa-chevron-right" value="#{ivy.cms.co('/Labels/proceed')}" rendered="#{!data.missingSsn}" actionListener="#{logic.proceed}"/>
+      			</div>
+      		</div>
+		</div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,36 @@
+services:
+  frontend:
+    restart: 'no'
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    container_name: anonymous_demos_apache
+    hostname: apache
+    user: root
+    ports:
+      - '${HTTP_PORT:-80}:80'
+      - '${HTTP_PORT:-81}:81'
+    volumes:
+      - './apache/vhosts:/usr/local/apache2/conf/vhosts'
+      - './apache/htdocs:/usr/local/apache2/htdocs'
+      - './apache/certs/server.crt:/usr/local/apache2/conf/server.crt'
+      - './apache/certs/server.key:/usr/local/apache2/conf/server.key'
+  ivy:
+    restart: 'no'
+    image: 'axonivy/axonivy-engine:12.0.11'
+    container_name: anonymous_demos_ivy
+    hostname: ivy
+    ports:
+      - '${IVY_PORT:-8080}:8080'
+    volumes:
+      - './AxonIvy/configuration/applications:/ivy/configuration/applications'
+      - './AxonIvy/configuration/ivy.yaml:/ivy/configuration/ivy.yaml'
+  mail:
+    restart: 'no'
+    image: 'rnwood/smtp4dev:latest'
+    container_name: anonymous_demos_mail
+    hostname: mail
+    ports:
+      - '${MAIL_HTTP_PORT:-2580}:80'
+      - '${MAIL_SMTP_PORT:-2525}:25'
+      

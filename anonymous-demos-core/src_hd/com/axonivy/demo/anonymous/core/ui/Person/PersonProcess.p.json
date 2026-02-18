@@ -1,0 +1,133 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19C23BB61C86480D",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.demo.anonymous.core.ui.Person.PersonData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "personId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.personId" : "param.personId"
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.person = ivy.repo.find(param.personId, com.axonivy.demo.anonymous.core.Person.class) as com.axonivy.demo.anonymous.core.Person;",
+            "out.missingSsn = StringUtils.isBlank(out.person.ssn);"
+          ]
+        },
+        "guid" : "19C23BB61CAF4E08"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 64 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "requestSsn",
+      "config" : {
+        "guid" : "19C2911B7A412850"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "EMail",
+      "name" : "Send SSN request email",
+      "config" : {
+        "headers" : {
+          "subject" : "<%=ivy.cms.co(\"/Emails/requestDataSubject\")%>",
+          "to" : "<%=in.person.email%>"
+        },
+        "message" : {
+          "body" : "<%=ivy.cms.co(\"/Emails/requestDataContent\", [in.emailSubmittMissingDataLink])%>",
+          "contentType" : "text/html"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 449, "y" : 145 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f3", "color" : "default" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Generate token for SSN request",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Service;",
+            "import java.util.UUID;",
+            "import com.axonivy.demo.anonymous.core.Token;",
+            "",
+            "Token token = new Token();",
+            "token.personId = in.personId;",
+            "token.token = UUID.randomUUID().toString();",
+            "token.type = \"requestSsn\";",
+            "token.valid = true;",
+            "ivy.repo.save(token);",
+            "",
+            "in.emailSubmittMissingDataLink = Service.get().appRelativeLink(\"anonymous-demos-open/19C23640F9AD30D8/submitMissingData.ivp?token=%s\".formatted(token.token));"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 144 },
+        "size" : { "width" : 128, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9", "color" : "default" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogEventStart",
+      "name" : "proceed",
+      "config" : {
+        "guid" : "19C2E3BDFB928419"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 144 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 216 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
+      }
+    } ]
+}

@@ -1,0 +1,165 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19C23800FB27FF95",
+  "config" : {
+    "data" : "com.axonivy.demo.anonymous.core.PersonApprovalData"
+  },
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1032, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SignalStartEvent",
+      "name" : "User approval",
+      "config" : {
+        "signalCode" : "personApproval",
+        "output" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Person;",
+            "out.personId = signal.getSignalData() as String;",
+            "out.person = ivy.repo.find(out.personId, Person.class) as Person;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 64 },
+        "labelOffset" : { "x" : 9, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f0", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "UserTask",
+      "name" : "Approve registration and request missing data.",
+      "config" : {
+        "dialog" : "com.axonivy.demo.anonymous.core.ui.Person:start(String)",
+        "call" : {
+          "map" : {
+            "param.personId" : "in.personId"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Tasks/ApproveRegistration/name\", [in.person.fullName])%>",
+          "responsible" : {
+            "activator" : "AnonymousUserApprover"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Person;",
+            "out.person = ivy.repo.find(out.personId, Person.class) as Person;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 244, "y" : 65 },
+        "size" : { "width" : 120, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "UserTask",
+      "name" : "Admin task - wait for user to submit missing data.",
+      "config" : {
+        "dialog" : "com.axonivy.demo.anonymous.core.ui.admin.AdminTask:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Tasks/AdminTask/name\", [in.person.fullName])%>",
+          "responsible" : {
+            "activator" : "AnonymousUserAdmin"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 65 },
+        "size" : { "width" : 128, "height" : 62 }
+      },
+      "boundaries" : [ {
+          "id" : "f7",
+          "type" : "SignalBoundaryEvent",
+          "name" : [
+            "Continue atfer person",
+            "submitted missing data"
+          ],
+          "config" : {
+            "signalCode" : "continueAfterFillingData:<%=in.personId%>"
+          },
+          "visual" : {
+            "at" : { "x" : 464, "y" : 106 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          },
+          "connect" : [
+            { "id" : "f8", "to" : "f11", "via" : [ { "x" : 528, "y" : 104 } ] }
+          ]
+        } ],
+      "connect" : [
+        { "id" : "f6", "to" : "f11", "color" : "default" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "EMail",
+      "name" : "Notify user.",
+      "config" : {
+        "headers" : {
+          "subject" : "<%=ivy.cms.co(\"/Emails/notifyExternalPersonSubject\")%>",
+          "to" : "<%=in.person.email%>"
+        },
+        "message" : {
+          "body" : "<%=ivy.cms.co(\"/Emails/notifyExternalPersonContent\", [in.person.fullName])%>",
+          "contentType" : "text/html"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 744, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : "Load person data.",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.demo.anonymous.core.Person;",
+            "in.person = ivy.repo.find(in.personId, Person.class) as Person;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 584, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9", "color" : "default" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "UserTask",
+      "name" : "Final information.",
+      "config" : {
+        "dialog" : "com.axonivy.demo.anonymous.core.ui.Person:start(String)",
+        "call" : {
+          "map" : {
+            "param.personId" : "in.personId"
+          }
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Tasks/FinalInformation/name\", [in.person.fullName])%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 904, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

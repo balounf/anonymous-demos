@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>anonymous_user_approver</username>
+        <password>password</password>
+        <fullName>Anonymous User Approver</fullName>
+        <role>AnonymousUserApprover</role>
+    </user>
+    <user>
+        <username>anonymous_user_admin</username>
+        <password>password</password>
+        <fullName>Anonymous User Admin</fullName>
+        <role>AnonymousUserAdmin</role>
+    </user>
+</userConfig>

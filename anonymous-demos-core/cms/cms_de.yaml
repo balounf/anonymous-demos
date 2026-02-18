@@ -1,0 +1,48 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        anonymous:
+          core:
+            ui:
+              Person:
+                email: E-Mail
+                fullName: Vorname
+                info: |
+                  <p>
+                  Eine neuer Benutzer hat sich registriert.
+                  </p>
+                note: |-
+                  <p>Zur Demonstration der Interaktion mit einem externen User aus einem internen AxonIvy Prozess, wird nun vom Benutzer seine Social Security Number angefragt. Durch die Anforderung erhält der Benutzer eine weitere Email mit einem Token, die ihn zu einer Seite bringt, auf der er die fehlende Information bereitststellen kann.</p>
+                  <p>Der interne Prozess wartet mit einem sogenannten Admin Task auf das Signal, dass der Benutzer die Information zur Verfügung gestellt hat. Der Admin kann diesen Task jederzeit übernehmen und manuell fortsetzen. Dies macht zum Beispiel dann Sinn, wenn die Information auf einem anderen Weg ins System eingepflegt wurde.</p>
+                noteFinal: Die Daten wurden vom externen Benutzer zur Verfügung gestellt und werden hier noch einmal angezeigt. Nach diesem Dialog endet der Prozess und damit die Demonstration.
+                requestSSN: Social Security Number anfordern
+                ssn: Social Scurity Number
+                title: Bestätigung eines Benutzers
+              admin:
+                AdminTask:
+                  adminTask: Administrator Aufgabe
+                  adminTaskInfo: |-
+                    Warten auf den Eintrag der Social Security Number eines neuen Benutzers.
+                    Dieser Warteschritt kann mit Weiter übersprungen werden, wenn die Daten anderweitig eingetragen wurden.
+Emails:
+  notifyExternalPersonContent: Hallo {0}, Ihre Social Security Number wurde akzeptiert. Der Registrationsprozess ist nun beendet.
+  notifyExternalPersonSubject: Ihre Registrierung ist nun beendet.
+  requestDataContent: Bitte folgen Sie diesem <a href="{0}">Link</a> um die benötigten Daten zu übertragen.
+  requestDataSubject: Bitte übermitteln Sie die benötigten Daten
+Labels:
+  keepWaiting: Weiter warten
+  proceed: Weiter
+  skip: Überspringen
+Processes:
+  Names:
+    externalUserInvitation: Einladung für neuen Benutzer
+Tasks:
+  AdminTask:
+    name: 'Admin Task: Warte auf zusätzliche Information von Benutzer: {0}'
+  ApproveRegistration:
+    name: 'Bestätigung der Registrierung von Benutzer: {0}'
+  FinalInformation:
+    name: 'Registrierung komplett von Benutzer: {0}'
+Validation:
+  valueIsRequired: ': Wert wird benötigt.'

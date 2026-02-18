@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/admin/AdminTask/adminTask')}</ui:define>
+		<ui:define name="content">
+			<h:form id="form">
+				<div class="ui-fluid">
+					<div class="grid">
+						<div class="col-12 md:col-12 lg:col-12">
+							<p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/core/ui/admin/AdminTask/adminTaskInfo')}" />
+						</div>
+					</div>
+					<div class="grid justify-content-end">
+						<div class="col-12 md:col-2 lg:col-2">
+							<p:commandButton id="proceed"
+								actionListener="#{logic.proceed}"
+								value="#{ivy.cms.co('/Labels/skip')}" icon="fa fa-angle-right" />
+						</div>
+						<div class="col-12 md:col-2 lg:col-2">
+							<p:commandButton id="close"
+								actionListener="#{ivyWorkflowView.cancelToHome()}"
+								value="#{ivy.cms.co('/Labels/keepWaiting')}" icon="fa fa-times" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

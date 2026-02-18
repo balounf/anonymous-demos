@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Register</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<style>
+body {
+	background-color: #ddd;
+	font-family: Arial, sans-serif;
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 8px;
+	border: 2px solid #000;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+button {
+	background-color: #007bff;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.note {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    max-width: 400px;
+    text-align: left;
+}
+
+</style>
+</head>
+<body>
+	<h1>Register</h1>
+	<div class="form-group">
+		Please register with your name and E-Mail address.
+	</div>
+	<form action="/designer/pro/anonymous-demos-open/19C23640F9AD30D8/externalRegister.ivp" method="post">
+
+		<div class="form-group">
+			<label for="fullName">Name:</label>
+			<input type="text" id="fullName" name="fullName" value="" required>
+		</div>
+
+		<div class="form-group">
+			<label for="email">E-Mail:</label>
+			<input type="text" id="email" name="email" value="" required>
+		</div>
+
+		<button type="submit">Register</button>
+	</form>
+	<div>
+		Alternatively, <a href="/designer/pro/anonymous-demos-open/19C23640F9AD30D8/register.ivp">an unauthenticated internal page can be used for registration</a>.
+	</div>
+	<div class="note">
+		This page demonstrates how to start an AxonIvy process from a web-page managed in an external system
+		as an anonymous user.
+		The page is served by the Apache web server and contains an HTML form. When the form is submitted, the
+		data is sent to AxonIvy via a POST request.
+		<hr/>
+		Note: The user is only identified by e-mail address. No AxonIvy user will be created.
+		This page is configured to call a process in the AxonIvy Designer.
+	</div>
+</body>
+</html>
