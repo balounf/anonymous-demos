@@ -1,6 +1,6 @@
 # anonymous-demos
 
-[![CI Build](https://github.com/axonivy-market/anonymous-demos/actions/workflows/ci.yml/badge.svg)](https://github.com/anonymous-demos/REPO-NAME/actions/workflows/ci.yml)
+[![CI Build](https://github.com/axonivy-market/anonymous-demos/actions/workflows/ci.yml/badge.svg)](https://github.com/anonymous-demos/anonymous-demos/actions/workflows/ci.yml)
 
 **Core idea**  
 Instead of registering users for every external user, use e-mails with randomly generated and unguessable tokens.

@@ -1,23 +1,16 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.1/data-class.json",
   "simpleName" : "PersonData",
   "namespace" : "com.axonivy.demo.anonymous.core.ui.Person",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "person",
-    "type" : "com.axonivy.demo.anonymous.core.Person",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.demo.anonymous.core.Person"
   }, {
-    "name" : "personId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "personId"
   }, {
-    "name" : "emailSubmittMissingDataLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "emailSubmittMissingDataLink"
   }, {
     "name" : "missingSsn",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "Boolean"
   } ]
 }

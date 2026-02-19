@@ -1,22 +1,23 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.1/data-class.json",
   "simpleName" : "RegisterData",
   "namespace" : "com.axonivy.demo.anonymous.open",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "person",
-    "type" : "com.axonivy.demo.anonymous.core.Person"
+    "type" : "com.axonivy.demo.anonymous.core.Person",
+    "modifiers" : [ ]
   }, {
     "name" : "result",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "emailVerificationLink",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "token",
-    "type" : "com.axonivy.demo.anonymous.core.Token"
+    "type" : "com.axonivy.demo.anonymous.core.Token",
+    "modifiers" : [ ]
   }, {
     "name" : "personId",
-    "type" : "String"
+    "modifiers" : [ ]
   } ]
 }
