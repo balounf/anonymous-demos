@@ -7,9 +7,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>anonymous-demos</module>
     <module>anonymous-demos-core</module>
-    <module>anonymous-demos-extra</module>
     <module>anonymous-demos-open</module>
   </modules>
 
