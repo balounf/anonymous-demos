@@ -3,7 +3,7 @@
   <groupId>com.axonivy.demo.anonymous.demos</groupId>
   <name>anonymous-demos</name>
   <artifactId>anonymous-demos-modules</artifactId>
-  <version>12.02.2026-SNAPSHOT</version>
+  <version>12.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
