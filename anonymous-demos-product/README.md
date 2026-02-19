@@ -65,7 +65,7 @@ To work on internal tasks, in a second browser open the workflow UI at http://lo
 
 ***Variant B, Apache WebServer and AxonIvy Designer***
 
-This variant uses docker containers to supply the demo environment. Make sure, you have docker installed, open a console or shell and go to the directory `aonymous-demos-extra/docker`
+This variant uses docker containers to supply the demo environment. Make sure, you have docker installed, open a console or shell and go to the directory `anonymous-demos-extra/docker`
 
 Start the containers with the command:
 
@@ -77,7 +77,7 @@ Open the link http://localhost:81/ to start the demo.
 
 Continue in the same way as in variant A.
 
-***Variant C, Apache WebServerm, AxonIvy Engine, Smtp4Dev Email Test Server***
+***Variant C, Apache WebServer, AxonIvy Engine, Smtp4Dev Email Test Server***
 
 This variant uses the same docker environment as variant B which can be started in the same way, but requires a little more setup.
 
