@@ -4,7 +4,7 @@ Dear developer!
 When you create your very valuable documentation, please be aware that this Readme.md is not only published on github. This documentation is also processed automatically and published on our website. For this to work, the two headings "Demo" and "Setup" must not be changed. Do also not change the order of the headings. Feel free to add sub-sections wherever you want.
 -->
 
-# MY-PRODUCT-NAME
+# anonymous-demos
 
 **Core idea**  
 Instead of registering users for every external user, use e-mails with randomly generated and unguessable tokens.
@@ -104,4 +104,9 @@ The entries under the heading "Setup" are filled in this tab, e.g. for the Conne
 
 ```
 @variables.yaml@
+
+External URL to application open space for building external links.
+com.axonivy.demo.anonymous.baseUrl: http://localhost:81/designer/pro
+
+
 ```
