@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.axonivy.market</groupId>
+	<groupId>com.axonivy.market.demo.anonymousdemos</groupId>
 	<artifactId>anonymous-demos-core</artifactId>
 	<version>12.0.0-SNAPSHOT</version>
 	<packaging>iar</packaging>
