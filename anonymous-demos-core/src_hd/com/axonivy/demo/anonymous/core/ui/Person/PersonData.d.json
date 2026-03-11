@@ -16,7 +16,7 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "missingSsn",
+    "name" : "missingSocSecNum",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]
