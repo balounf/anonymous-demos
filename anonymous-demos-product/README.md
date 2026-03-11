@@ -12,8 +12,8 @@ All requests to external users are done via e-mails containing such tokens. Inte
 continued by sending them special signals.
 
 **Use Cases**
-* Start an unauthenticated process from AxonIvy, verify the user's e-mail address and start an internal AxonIvy process.
-* Start an unauthenticated process from any web form on any external web-page via the form's `action` attribute and its POST request. Verify the user's e-mail address and start an internal AxonIvy process.
+* Start an unauthenticated process from Axon Ivy, verify the user's e-mail address and start an internal Axon Ivy process.
+* Start an unauthenticated process from any web form on any external web-page via the form's `action` attribute and its POST request. Verify the user's e-mail address and start an internal Axon Ivy process.
 * During a running internal process, interact with a user by e-mail and wait for their response efficiently.
 
 <!--
@@ -22,7 +22,7 @@ The explanations under "MY-RRODUCT-NAME" are displayed  e.g. for the Connector A
 
 ## Demo
 
-The demos show a fictional registration use-case, where an unauthenticated user enters his/her name and e-mail address to register. In the next step, the user's e-mail will be verified by sending a link with a random token to the user's e-mail address. The token is stored in the AxonIvy *Business Data Repository* and if the user follows the token link, the token will be invalidated and an internal process is started by a signal.
+The demos show a fictional registration use-case, where an unauthenticated user enters his/her name and e-mail address to register. In the next step, the user's e-mail will be verified by sending a link with a random token to the user's e-mail address. The token is stored in the Axon Ivy *Business Data Repository* and if the user follows the token link, the token will be invalidated and an internal process is started by a signal.
 
 For demonstration reasons, the internal process will be viewed by an approver who will find out, that some information of the external user is needed (their social security number). The approver requests the additional data from the external user with another token e-mail.
 
@@ -62,24 +62,24 @@ All demo variants use the same workflow:
 
 The demos can be run in the following scenarios:
 
-A. Standalone in the AxonIvy Designer
-B. With the Apache Web Server and the AxonIvy Designer
-C. With the Apache Web Server, the AxonIvy Engine and a Test E-Mail Server
+A. Standalone in the Axon Ivy Designer
+B. With the Apache Web Server and the Axon Ivy Designer
+C. With the Apache Web Server, the Axon Ivy Engine and a Test E-Mail Server
 <!--
 We use all entries under the heading "Demo" for the demo-Tab on our Website, e.g. for the Connector A-Trust here: https://market.axonivy.com/a-trust#tab-demo  
 -->
 
 ## Setup
 
-***Variant A, AxonIvy Designer***
+***Variant A, Axon Ivy Designer***
 
-Assuming your AxonIvy Designer runs at the default port, open the link: http://localhost:8081/designer/pro/anonymous-demos-open/19C23640F9AD30D8/register.ivp to start the demo.
+Assuming your Axon Ivy Designer runs at the default port, open the link: http://localhost:8081/designer/pro/anonymous-demos-open/19C23640F9AD30D8/register.ivp to start the demo.
 
-Open the *Email Messages* view in AxonIvy Designer to see any e-mails generated.
+Open the *Email Messages* view in Axon Ivy Designer to see any e-mails generated.
 
 To work on internal tasks, in a second browser open the workflow UI at http://localhost:8081 (or install the Portal if you like).
 
-***Variant B, Apache WebServer and AxonIvy Designer***
+***Variant B, Apache WebServer and Axon Ivy Designer***
 
 This variant uses docker containers to supply the demo environment. Make sure, you have docker installed, open a console or shell and go to the directory `anonymous-demos-extra/docker`
 
@@ -93,13 +93,13 @@ Open the link http://localhost:81/ to start the demo.
 
 Continue in the same way as in variant A.
 
-***Variant C, Apache WebServer, AxonIvy Engine, Smtp4Dev Email Test Server***
+***Variant C, Apache WebServer, Axon Ivy Engine, Smtp4Dev Email Test Server***
 
 This variant uses the same docker environment as variant B which can be started in the same way, but requires a little more setup.
 
 First, build the deployable file by right-clicking on the top-level `pom.xml` file and selecting `Run as... / Maven install`. This will start the build process and created a `zip` file in the `target`directory.
 
-Next, go to the Demo AxonIvy Engine at http://localhost:8080/ and open the Engine Cockpit.
+Next, go to the Demo Axon Ivy Engine at http://localhost:8080/ and open the Engine Cockpit.
 
 Create a new application with the exact name `anonymous-demos` and deploy the `zip` file which was generated before.
 
@@ -107,13 +107,13 @@ Open the link http://localhost/ to start the demo.
 
 To work on internal tasks, use the `anonymous_user_approver` (Password `password`) owning the role `AnonymousUserApprover` for most tasks or the `anonymous_user_admin` (Password `password`) owning the role `AnonymousUserAdmin` for the Admin task.
 
-To see e-mails generated by the AxonIvy Engine, open http://localhost:2580/ (no e-mails will be sent to the net).
+To see e-mails generated by the Axon Ivy Engine, open http://localhost:2580/ (no e-mails will be sent to the net).
 
 ### Open Project and Reverse Proxy Server Apache
 
-The demos use an Apache Web Server as a Reverse Proxy. For security reasons, the Reverse Proxy will only forward requests to the `anonymous-demos-open` project (and certain needed accessories) to the internal AxonIvy Engine (or Designer). Therefore external users will not be able to see the *Portal* or other parts of any application.
+The demos use an Apache Web Server as a Reverse Proxy. For security reasons, the Reverse Proxy will only forward requests to the `anonymous-demos-open` project (and certain needed accessories) to the internal Axon Ivy Engine (or Designer). Therefore external users will not be able to see the *Portal* or other parts of any application.
 
-Note: In these demos, the Apache Web Server will in fact implement two different reverse proxy servers, one forwarding request to http://localhost:81/ to the AxonIvy Designer and one forwarding requests to http://localhost/ to the AxonIvy Engine.
+Note: In these demos, the Apache Web Server will in fact implement two different reverse proxy servers, one forwarding request to http://localhost:81/ to the Axon Ivy Designer and one forwarding requests to http://localhost/ to the Axon Ivy Engine.
 <!--
 The entries under the heading "Setup" are filled in this tab, e.g. for the Connector A-Trust here: https://market.axonivy.com/a-trust#tab-setup. 
 -->

@@ -16,9 +16,9 @@ Dialogs:
                   <hr/>
                   This example demonstrates how internal processes can respond to actions from an external user.
                 noteRegister: |-
-                  This page shows how to start an AxonIvy process as an anonymous user. The page requests an email address, which must then be verified. Verification is done via an email containing a special token link. The randomly generated token ensures that the process communicates with the owner of the email address.
+                  This page shows how to start an Axon Ivy process as an anonymous user. The page requests an email address, which must then be verified. Verification is done via an email containing a special token link. The randomly generated token ensures that the process communicates with the owner of the email address.
                   <hr/>
-                  <strong>Note:</strong> The user is only identified by e-mail address. No AxonIvy user will be created.
+                  <strong>Note:</strong> The user is only identified by e-mail address. No Axon Ivy user will be created.
                 register: Register
                 ssn: Social security number
                 submit: Submit

@@ -13,7 +13,7 @@ Dialogs:
                   Eine neuer Benutzer hat sich registriert.
                   </p>
                 note: |-
-                  <p>Zur Demonstration der Interaktion mit einem externen User aus einem internen AxonIvy Prozess, wird nun vom Benutzer seine Social Security Number angefragt. Durch die Anforderung erhält der Benutzer eine weitere Email mit einem Token, die ihn zu einer Seite bringt, auf der er die fehlende Information bereitststellen kann.</p>
+                  <p>Zur Demonstration der Interaktion mit einem externen User aus einem internen Axon Ivy Prozess, wird nun vom Benutzer seine Social Security Number angefragt. Durch die Anforderung erhält der Benutzer eine weitere Email mit einem Token, die ihn zu einer Seite bringt, auf der er die fehlende Information bereitststellen kann.</p>
                   <p>Der interne Prozess wartet mit einem sogenannten Admin Task auf das Signal, dass der Benutzer die Information zur Verfügung gestellt hat. Der Admin kann diesen Task jederzeit übernehmen und manuell fortsetzen. Dies macht zum Beispiel dann Sinn, wenn die Information auf einem anderen Weg ins System eingepflegt wurde.</p>
                 noteFinal: Die Daten wurden vom externen Benutzer zur Verfügung gestellt und werden hier noch einmal angezeigt. Nach diesem Dialog endet der Prozess und damit die Demonstration.
                 requestSSN: Social Security Number anfordern

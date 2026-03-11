@@ -8,8 +8,8 @@ All requests to external users are done via e-mails containing such tokens. Inte
 continued by sending them special signals.
 
 **Use Cases**
-* Start an unauthenticated process from AxonIvy, verify the user's e-mail address and start an internal AxonIvy process.
-* Start an unauthenticated process from any web form on any external web-page via the form's `action` attribute and its POST request. Verify the user's e-mail address and start an internal AxonIvy process.
+* Start an unauthenticated process from Axon Ivy, verify the user's e-mail address and start an internal Axon Ivy process.
+* Start an unauthenticated process from any web form on any external web-page via the form's `action` attribute and its POST request. Verify the user's e-mail address and start an internal Axon Ivy process.
 * During a running internal process, interact with a user by e-mail and wait for their response efficiently.
 
 Read our [documentation](anonymous-demos-product/README.md).
