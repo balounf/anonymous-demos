@@ -8,8 +8,8 @@ Dialogs:
               Register:
                 email: E-Mail
                 fullName: Full name
-                info: "<p>\n\tPlease register with your name and e-mail address!\n</p>\n<p>\n\tTo demo interaction with an anonymous user in an open space, you will receive an e-mail containing a link to confirm your e-mail address ad identification.\n\tTo demo interaction with an anonymous user started\
-                  \ by an internal process, an \"approver\" will later ask you vie e-mail to supply your social security number\n\tto continue the internal process. (The number is just an example and will not be validated.)\n</p>"
+                info: "<p>\n\tPlease register with your name and e-mail address!\n</p>\n<p>\n\tTo demonstrate interaction with an anonymous user in an open space, you will receive an e-mail containing a link to confirm your e-mail address and identification.\n\tTo demo interaction with an anonymous user started\
+                  \ by an internal process, an \"approver\" will later ask you via e-mail to supply your Social Security Number\n\tto continue the internal process. (The number is just an example and will not be validated.)\n</p>"
                 infoMissing: "<p>\n\tPlease provide additional information below!\n</p>"
                 noteAddData: |-
                   The internal process is currently waiting for additional data from the external user. The token in the email identifies the correct external user for the dialog.
@@ -33,7 +33,7 @@ Static:
   invalidToken: Supplied token is invalid or expired.
   processFinished: Process finished.
   registrationAborted: Registration was aborted.
-  registrationAbortedReason: The reason for abortion of your registration ist most likely incomplete data.
+  registrationAbortedReason: The reason for abortion of your registration is most likely incomplete data.
   registrationContinues: Your registration will be approved and additional data will be requested from you.
   registrationPending: Registration pending
   submissionSuccessful: Submission successful
