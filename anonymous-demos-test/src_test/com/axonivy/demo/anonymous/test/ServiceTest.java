@@ -1,4 +1,4 @@
-package com.axonivy.market.demo.anonymousdemos.test;
+package com.axonivy.demo.anonymous.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
