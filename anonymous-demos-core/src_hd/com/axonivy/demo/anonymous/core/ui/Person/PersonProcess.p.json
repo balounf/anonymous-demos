@@ -21,7 +21,7 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "out.person = ivy.repo.find(param.personId, com.axonivy.demo.anonymous.core.Person.class) as com.axonivy.demo.anonymous.core.Person;",
-            "out.missingSsn = StringUtils.isBlank(out.person.ssn);"
+            "out.missingSsn = StringUtils.isBlank(out.person.socialSecurityNumber);"
           ]
         },
         "guid" : "19C23BB61CAF4E08"

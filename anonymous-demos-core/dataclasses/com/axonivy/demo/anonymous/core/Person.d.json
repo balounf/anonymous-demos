@@ -12,7 +12,7 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "ssn",
+    "name" : "socialSecurityNumber",
     "type" : "String",
     "comment" : "Social security number",
     "modifiers" : [ "PERSISTENT" ]

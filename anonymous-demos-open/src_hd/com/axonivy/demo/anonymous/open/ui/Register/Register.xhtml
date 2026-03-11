@@ -34,10 +34,10 @@
       		</div>
       		<div class="grid">
       			<div class="col-12 md:col-6 lg:col-3">
-      				<p:outputLabel for="ssn" value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/open/ui/Register/ssn')}" rendered="#{data.addMissingData}"/>
+      				<p:outputLabel for="socialSecurityNumber" value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/open/ui/Register/ssn')}" rendered="#{data.addMissingData}"/>
       			</div>
       			<div class="col-12 md:col-6 lg:col-3">
-      				<p:inputMask id="ssn" value="#{data.person.ssn}" required="#{data.addMissingData}" requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/open/ui/Register/ssn')}#{ivy.cms.co('/Validation/valueIsRequired')}" rendered="#{data.addMissingData}"/>
+      				<p:inputMask id="socialSecurityNumber" value="#{data.person.socialSecurityNumber}" required="#{data.addMissingData}" requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/demo/anonymous/open/ui/Register/ssn')}#{ivy.cms.co('/Validation/valueIsRequired')}" rendered="#{data.addMissingData}"/>
       			</div>
       		</div>
       		<p:spacer/>

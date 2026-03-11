@@ -63,12 +63,12 @@
           "params" : [
             { "name" : "fullName", "type" : "String", "desc" : "" },
             { "name" : "email", "type" : "String", "desc" : "" },
-            { "name" : "ssn", "type" : "String", "desc" : "" }
+            { "name" : "socialSecurityNumber", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.person.email" : "param.email",
             "out.person.fullName" : "param.fullName",
-            "out.person.ssn" : "param.ssn"
+            "out.person.socialSecurityNumber" : "param.socialSecurityNumber"
           },
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
