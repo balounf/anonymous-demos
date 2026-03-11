@@ -35,12 +35,28 @@ When the approver continues from this final dialog, the process will end.
 All demo variants use the same workflow:
 
 * Start the demo as unauthenticated user and enter name and e-mail address
+![Apache page - registration](images/registration_page_apache.png)
+*Apache page - registration*
+![designer page - registration](images/registration_page_designer.png)
+*designer page - registration*
 * Wait for an e-mail verification e-mail and follow the link in this e-mail
+
+    ![Registration email](images/registration_email.png)
+
+    *E-Mail for registration*
 * A task for the role `AnonymousUserApprover` will be created. In this task, additional data (social security number) will be requested from the external user.
+
+    ![Request SSN](images/request_social_security_number.png)
+
+    *E-Mail for registration*
 * As unauthenticated user open your e-mail to find the additional data request, follow the link and enter the missing data.
 * You will receive an e-mail confirming the complete registration process.
 * A final confirmation task for the role `AnonymousUserApprover` will be created. After continuing from this task, the demo ends
 * A small variant shows how a user owning the role `AnonymousUserApprover` can skip the waiting for the external user to enter their additional data. This can be used to terminate waiting in case the additional information was entered manually by some other means.
+
+    ![Overview anonymous user data - SSN](images/anonymous_user_data_overview_task.png)
+
+    *Last step by approver user - check anonymous user data*
 
 **Scenarios**
 
