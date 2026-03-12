@@ -3,8 +3,8 @@ FROM httpd:2.4.65
 # change to root user to allow package installations
 USER 0
 
-# install apache module auth openidc
-RUN apt-get update && \ 
+# clean up default apache modules and apt cache, add shell alias
+RUN apt-get update && \
 	rm -rf /usr/lib/apache2/modules && \
 	rm -rf /var/lib/apt/lists/* && \
 	echo "alias l='ls -al --color'" >> /root/.bashrc
@@ -21,6 +21,6 @@ RUN sed -i \
 
 # create empty vhost config file and include it to main config
 RUN echo '\nIncludeOptional conf/vhosts/*.conf' >> /usr/local/apache2/conf/httpd.conf
-	
+
 # change back user
 USER 1001
